@@ -17,9 +17,11 @@ using namespace std;
 int main()
 {
 
-
 	//1- Creez 9 pixels rouge  (255,0,0)	
-
+	for (int i = 0; i < 9; i++) {
+		Pixel(255,0,0);
+		Pixel(0, 255, 0);
+	}
 	//2-Creez 9 pixels verts (0,255,0)
 	
 	//3- Creez une image de taille 3*3 

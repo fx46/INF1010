@@ -22,7 +22,6 @@ public:
 	void ajouterImage(const Image &image);
 
 	void afficherImages() const;
-	
 
 	void doublerTailleImageEnLargeur(unsigned int indiceImage);
 
