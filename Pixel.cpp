@@ -1,5 +1,6 @@
 #include "Pixel.h"
 #include "Const.h"
+#include<iostream>
 
 
 Pixel::Pixel()
@@ -23,7 +24,7 @@ unsigned int Pixel::getR() {
 	return tauxRouge_;
 }
 
-unsigned int Pixel::getV() {
+unsigned int Pixel::getG() {
 	return tauxVert_;
 }
 
@@ -63,6 +64,10 @@ void Pixel::modifierTeinteBleu(int incrementBleu) {
 }
 
 void Pixel::afficherPixel() const {
-	;
+	//si R,G et B sont tous 0, affiche Q
+	if(this->getR() && !this->getB() && !this->getG()){ std::cout << 'R';}
+	else if (!this->getR() && this->getB() && !this->getG()){ std::cout << 'B';}
+	else if (!this->getR() && !this->getB() && this->getG()){ std::cout << 'G';}
+	else std::cout << 'Q';
 }
 

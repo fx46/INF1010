@@ -13,7 +13,7 @@ public:
 	Pixel(unsigned int tauxRouge,unsigned int tauxVert, unsigned int tauxBleu);
 
 	unsigned int getR();
-	unsigned int getV();
+	unsigned int getG();
 	unsigned int getB();
 
 	void modifierTeinteRouge( int incrementRouge);
