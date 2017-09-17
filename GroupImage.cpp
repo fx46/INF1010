@@ -8,7 +8,6 @@ GroupImage::GroupImage() {
 	type_ = "";
 	nombreImages_ = 0;
 	capaciteImages_ = 0;
-
 }
 
 GroupImage::~GroupImage() {
@@ -40,7 +39,9 @@ void GroupImage::ajouterImage(const Image &image) {
 }
 
 void GroupImage::afficherImages() const {
-	;
+	for (unsigned int i = obtenirNombreImages(); i > 0; i--) {
+		obtenirImage(i).afficherImage();
+	}
 }
 
 void GroupImage::doublerTailleImageEnLargeur(unsigned int indiceImage) {

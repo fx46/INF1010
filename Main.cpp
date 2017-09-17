@@ -24,6 +24,8 @@ int main()
 		Pixel(255, 0, 0);
 		
 	}
+	Pixel pixel = Pixel(255, 0, 0);
+	pixel.afficherPixel();
 	//2-Creez 9 pixels verts (0,255,0)
 	
 	//3- Creez une image de taille 3*3 

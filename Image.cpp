@@ -18,6 +18,10 @@ Image::Image(const string& nomImage,unsigned int nombrePixelHauteur, unsigned in
 	pixels_ = 0;
 }
 
+Image::~Image()
+{
+}
+
 string Image::obtenirNomImage() const{
 	return this->nomImage_;
 }
@@ -63,5 +67,13 @@ void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int posi
 	}
 	else {
 		pixel.modifierTeinteVert(increment);
+	}
+}
+
+void Image::afficherImage() const {
+	for (unsigned int i = obtenirNombrePixelHauteur(); i > 0; i--) {
+		for (unsigned int j = obtenirNombrePixelLargeur(); j > 0; j--) {
+			pixels_[i][j].afficherPixel();
+		}
 	}
 }
