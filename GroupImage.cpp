@@ -16,6 +16,7 @@ GroupImage::~GroupImage() {
 GroupImage::GroupImage(const string &type, unsigned int capaciteImages) {
 	type_ = type;
 	capaciteImages_ = capaciteImages;
+	nombreImages_ = 0;
 }
 
 void GroupImage::modifierType(const string &type) {
@@ -35,7 +36,9 @@ unsigned int GroupImage::obtenirNombreImages() const {
 }
 
 void GroupImage::ajouterImage(const Image &image) {
-	images_[capaciteImages_++] = image;
+	if (nombreImages_ < capaciteImages_) {
+		images_[nombreImages_++] = image;
+	}
 }
 
 void GroupImage::afficherImages() const {
