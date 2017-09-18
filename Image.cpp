@@ -1,6 +1,8 @@
 #include "Image.h"
 #include "Pixel.h"
 #include "Const.h"
+#include <string>
+#include <iostream>
 	
 using namespace std;
 	
@@ -15,9 +17,9 @@ Image::Image(const string& nomImage,unsigned int nombrePixelHauteur, unsigned in
 	nomImage_ = nomImage;
 	nombrePixelEnHauteur_ = nombrePixelHauteur;
 	nombrePixelEnLargeur_ = nombrePixelLargeur;
-	pixels_ = new Pixel*[nombrePixelLargeur];
-	for (unsigned int i = 0; i < nombrePixelLargeur; i++) {
-		pixels_[i] = new Pixel[nombrePixelHauteur];
+	pixels_ = new Pixel*[nombrePixelHauteur];
+	for (unsigned int i = 0; i < nombrePixelHauteur; i++) {
+		pixels_[i] = new Pixel[nombrePixelLargeur];
 	}
 }
 
@@ -42,16 +44,20 @@ void Image::modifierNomImage(const string & nomImage){
 }
 
 void Image::doublerTailleEnLargeur(){
-	nombrePixelEnLargeur_ = 2 * nombrePixelEnLargeur_;
+	//nombrePixelEnLargeur_ *= 2;
 }
+
 void Image::doublerTailleEnHauteur(){
-	nombrePixelEnHauteur_ = 2 * nombrePixelEnHauteur_;
+	//nombrePixelEnHauteur_ *= 2;
 }
 
 bool Image::ajouterPixel(Pixel & pixel,unsigned int positionLargeur, unsigned int positionHauteur){
-	if (positionLargeur <= nombrePixelEnLargeur_ && positionHauteur <= nombrePixelEnHauteur_) {
-		pixels_[positionLargeur][positionHauteur] = pixel;
-		return true;
+	if (positionLargeur >= 0 && 
+		positionHauteur >= 0 && 
+		positionLargeur < obtenirNombrePixelLargeur() &&
+		positionHauteur < obtenirNombrePixelHauteur()) {
+			pixels_[positionLargeur][positionHauteur] = pixel;
+			return true;
 	}
 	return false;
 }
@@ -73,6 +79,7 @@ void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int posi
 }
 
 void Image::afficherImage() const {
+	cout << "Affichage de l'image : " << nomImage_ << endl;
 	for (unsigned int i = 0; i < obtenirNombrePixelLargeur(); i++) {
 		cout << "\t";
 		for (unsigned int j = 0; j < obtenirNombrePixelHauteur(); j++) {
@@ -80,4 +87,5 @@ void Image::afficherImage() const {
 		}
 		cout << endl;
 	}
+	cout << endl;
 }

@@ -1,7 +1,7 @@
 /**************************************************
  * Titre: Travail pratique #1 - Main.cpp
  * Date: Septembre 2017
- * Auteur: 
+ * Auteurs: Charles Marois et François-Xavier Legault
 **************************************************/
 
 #include "Pixel.h"
@@ -66,14 +66,14 @@ int main()
 	groupeImage.afficherImages();
 
 	//13- Doublez la taille de la premiere image du groupe en largeur	
-	groupeImage.obtenirImage(0).doublerTailleEnLargeur();
+	groupeImage.doublerTailleImageEnLargeur(0);
 
 	//14- Doublez la taille de la deuxieme image du groupe en hauteur
-	groupeImage.obtenirImage(1).doublerTailleEnHauteur();
+	groupeImage.doublerTailleImageEnHauteur(1);
 
 	//15- Afficher cette image 
-	groupeImage.afficherImages();
-	
+	groupeImage.obtenirImage(1).afficherImage();
+
 	system("pause");
 	return 0;
 }

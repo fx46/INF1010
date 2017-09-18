@@ -46,16 +46,18 @@ void GroupImage::ajouterImage(const Image &image) {
 
 void GroupImage::afficherImages() const {
 	for (unsigned int i = 0; i < obtenirNombreImages(); i++) {
-		cout << "Affichage de l'image : " << obtenirImage(i).obtenirNomImage() << endl;
 		obtenirImage(i).afficherImage();
-		cout << endl;
 	}
 }
 
 void GroupImage::doublerTailleImageEnLargeur(unsigned int indiceImage) {
-	obtenirImage(indiceImage).doublerTailleEnLargeur();
+	Image nouvelleImage = obtenirImage(indiceImage);
+	nouvelleImage.doublerTailleEnLargeur();
+	images_[indiceImage] = nouvelleImage;
 }
 
 void GroupImage::doublerTailleImageEnHauteur(unsigned int indiceImage) {
-	obtenirImage(indiceImage).doublerTailleEnHauteur();
+	Image nouvelleImage = obtenirImage(indiceImage);
+	nouvelleImage.doublerTailleEnHauteur();
+	images_[indiceImage] = nouvelleImage;
 }
