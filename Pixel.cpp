@@ -33,10 +33,10 @@ unsigned int Pixel::getB() {
 }
 
 void Pixel::modifierTeinteRouge(int incrementRouge) {
-	if (tauxRouge_ += incrementRouge < MIN_CONCENTRATION_COULEUR) {
+	if (tauxRouge_ + incrementRouge < MIN_CONCENTRATION_COULEUR) {
 		tauxRouge_ = MIN_CONCENTRATION_COULEUR;
 	}
-	else if (tauxRouge_ += incrementRouge > MAX_CONCENTRATION_COULEUR) {
+	else if (tauxRouge_ + incrementRouge > MAX_CONCENTRATION_COULEUR) {
 		tauxRouge_ = MAX_CONCENTRATION_COULEUR;
 	}
 	else { tauxRouge_ += incrementRouge; }
@@ -44,20 +44,20 @@ void Pixel::modifierTeinteRouge(int incrementRouge) {
 	
 
 void Pixel::modifierTeinteVert(int incrementVert) {
-	if (tauxVert_ += incrementVert < MIN_CONCENTRATION_COULEUR) {
+	if (tauxVert_ + incrementVert < MIN_CONCENTRATION_COULEUR) {
 		tauxVert_ = MIN_CONCENTRATION_COULEUR;
 	}
-	else if (tauxVert_ += incrementVert > MAX_CONCENTRATION_COULEUR) {
+	else if (tauxVert_ + incrementVert > MAX_CONCENTRATION_COULEUR) {
 		tauxVert_ = MAX_CONCENTRATION_COULEUR;
 	}
 	else { tauxVert_ += incrementVert; }
 }
 
 void Pixel::modifierTeinteBleu(int incrementBleu) {
-	if (tauxBleu_ += incrementBleu < MIN_CONCENTRATION_COULEUR) {
+	if (tauxBleu_ + incrementBleu < MIN_CONCENTRATION_COULEUR) {
 		tauxBleu_ = MIN_CONCENTRATION_COULEUR;
 	}
-	else if (tauxBleu_ += incrementBleu > MAX_CONCENTRATION_COULEUR) {
+	else if (tauxBleu_ + incrementBleu > MAX_CONCENTRATION_COULEUR) {
 		tauxRouge_ = MAX_CONCENTRATION_COULEUR;
 	}
 	else { tauxBleu_ += incrementBleu; }
