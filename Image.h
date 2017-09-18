@@ -26,7 +26,7 @@ public:
 	void afficherImage() const;
 
 	bool ajouterPixel(Pixel & pixel,unsigned int positionLargeur, unsigned int positionHauteur);
-	Pixel obtenirPixel(unsigned int positionHauteur, unsigned int positionLargeur) const ;
+	Pixel obtenirPixel(unsigned int positionHauteur, unsigned int positionLargeur) const;
 	void augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int  increment, char couleur);
 
 
@@ -35,7 +35,6 @@ private :
 	unsigned int nombrePixelEnHauteur_;
 	unsigned int nombrePixelEnLargeur_;
 	Pixel** pixels_;
-
 };
 
 #endif

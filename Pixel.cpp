@@ -65,9 +65,9 @@ void Pixel::modifierTeinteBleu(int incrementBleu) {
 
 void Pixel::afficherPixel() const {
 	//si R,G et B sont tous 0, affiche Q
-	if(tauxRouge_ && (tauxBleu_ == 0) && (tauxVert_ == 0)){ std::cout << 'R';}
-	else if ((tauxRouge_ == 0) && tauxBleu_ && (tauxVert_ == 0)){ std::cout << 'B';}
-	else if ((tauxRouge_ == 0) && (tauxBleu_ == 0) && tauxVert_){ std::cout << 'G';}
+	if((tauxRouge_ != 0) && (tauxBleu_ == 0) && (tauxVert_ == 0)){ std::cout << 'R';}
+	else if ((tauxRouge_ == 0) && (tauxBleu_ != 0) && (tauxVert_ == 0)){ std::cout << 'B';}
+	else if ((tauxRouge_ == 0) && (tauxBleu_ == 0) && (tauxVert_ != 0)){ std::cout << 'G';}
 	else std::cout << 'Q';
 }
 

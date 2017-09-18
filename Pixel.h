@@ -16,8 +16,8 @@ public:
 	unsigned int getG();
 	unsigned int getB();
 
-	void modifierTeinteRouge( int incrementRouge);
-	void modifierTeinteVert( int incrementVert);
+	void modifierTeinteRouge(int incrementRouge);
+	void modifierTeinteVert(int incrementVert);
 	void modifierTeinteBleu(int incrementBleu);
 		
 	void afficherPixel() const;

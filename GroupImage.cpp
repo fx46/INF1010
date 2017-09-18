@@ -8,6 +8,7 @@ GroupImage::GroupImage() {
 	type_ = "";
 	nombreImages_ = 0;
 	capaciteImages_ = 0;
+	images_ = nullptr;
 }
 
 GroupImage::~GroupImage() {
@@ -17,6 +18,7 @@ GroupImage::GroupImage(const string &type, unsigned int capaciteImages) {
 	type_ = type;
 	capaciteImages_ = capaciteImages;
 	nombreImages_ = 0;
+	images_ = new Image[capaciteImages];
 }
 
 void GroupImage::modifierType(const string &type) {
@@ -37,13 +39,16 @@ unsigned int GroupImage::obtenirNombreImages() const {
 
 void GroupImage::ajouterImage(const Image &image) {
 	if (nombreImages_ < capaciteImages_) {
-		images_[nombreImages_++] = image;
+		images_[nombreImages_] = image;
+		nombreImages_++;
 	}
 }
 
 void GroupImage::afficherImages() const {
-	for (unsigned int i = obtenirNombreImages(); i > 0; i--) {
+	for (unsigned int i = 0; i < obtenirNombreImages(); i++) {
+		cout << "Affichage de l'image : " << obtenirImage(i).obtenirNomImage() << endl;
 		obtenirImage(i).afficherImage();
+		cout << endl;
 	}
 }
 

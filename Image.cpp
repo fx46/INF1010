@@ -8,14 +8,17 @@ Image::Image(){
 	nomImage_ = "";
 	nombrePixelEnHauteur_ = 0;
 	nombrePixelEnLargeur_ = 0;
-	pixels_ = 0;
+	pixels_ = nullptr;
 }
 
 Image::Image(const string& nomImage,unsigned int nombrePixelHauteur, unsigned int nombrePixelLargeur){
 	nomImage_ = nomImage;
 	nombrePixelEnHauteur_ = nombrePixelHauteur;
 	nombrePixelEnLargeur_ = nombrePixelLargeur;
-	pixels_ = 0;
+	pixels_ = new Pixel*[nombrePixelLargeur];
+	for (unsigned int i = 0; i < nombrePixelLargeur; i++) {
+		pixels_[i] = new Pixel[nombrePixelHauteur];
+	}
 }
 
 Image::~Image()
@@ -23,15 +26,15 @@ Image::~Image()
 }
 
 string Image::obtenirNomImage() const{
-	return this->nomImage_;
+	return nomImage_;
 }
 
 unsigned int Image::obtenirNombrePixelHauteur() const{
-	return this->nombrePixelEnHauteur_;
+	return nombrePixelEnHauteur_;
 }
 
 unsigned int Image::obtenirNombrePixelLargeur() const{
-	return this->nombrePixelEnLargeur_;
+	return nombrePixelEnLargeur_;
 }
 
 void Image::modifierNomImage(const string & nomImage){
@@ -47,7 +50,7 @@ void Image::doublerTailleEnHauteur(){
 
 bool Image::ajouterPixel(Pixel & pixel,unsigned int positionLargeur, unsigned int positionHauteur){
 	if (positionLargeur <= nombrePixelEnLargeur_ && positionHauteur <= nombrePixelEnHauteur_) {
-		pixels_[positionHauteur][positionHauteur] = pixel;
+		pixels_[positionLargeur][positionHauteur] = pixel;
 		return true;
 	}
 	return false;
@@ -58,22 +61,23 @@ Pixel Image::obtenirPixel(unsigned int positionHauteur, unsigned int positionLar
 }
 
 void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int  increment, char couleur){
-	Pixel pixel = obtenirPixel(positionLargeur, positionHauteur);
-	if (couleur = 'R') {
-		pixel.modifierTeinteRouge(increment);
+	if (couleur == 'R') {
+		pixels_[positionLargeur][positionHauteur].modifierTeinteRouge(increment);
 	}
-	else if (couleur = 'B') {
-		pixel.modifierTeinteBleu(increment);
+	else if (couleur == 'B') {
+		pixels_[positionLargeur][positionHauteur].modifierTeinteBleu(increment);
 	}
 	else {
-		pixel.modifierTeinteVert(increment);
+		pixels_[positionLargeur][positionHauteur].modifierTeinteVert(increment);
 	}
 }
 
 void Image::afficherImage() const {
-	for (unsigned int i = obtenirNombrePixelHauteur(); i > 0; i--) {
-		for (unsigned int j = obtenirNombrePixelLargeur(); j > 0; j--) {
-			pixels_[i][j].afficherPixel();
+	for (unsigned int i = 0; i < obtenirNombrePixelLargeur(); i++) {
+		cout << "\t";
+		for (unsigned int j = 0; j < obtenirNombrePixelHauteur(); j++) {
+			obtenirPixel(i, j).afficherPixel();
 		}
+		cout << endl;
 	}
 }
