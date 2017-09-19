@@ -44,11 +44,17 @@ void Image::modifierNomImage(const string & nomImage){
 }
 
 void Image::doublerTailleEnLargeur(){
-	//nombrePixelEnLargeur_ *= 2;
+	Image nouvelleImage = Image("test", obtenirNombrePixelHauteur(), 2 * obtenirNombrePixelLargeur());
+	nouvelleImage.pixels_ = pixels_;
+	pixels_ = nouvelleImage.pixels_;
+	nombrePixelEnLargeur_ *= 2;
 }
 
 void Image::doublerTailleEnHauteur(){
-	//nombrePixelEnHauteur_ *= 2;
+	Image nouvelleImage = Image("test", 2 * obtenirNombrePixelHauteur(), obtenirNombrePixelLargeur());
+	nouvelleImage.pixels_ = pixels_;
+	pixels_ = nouvelleImage.pixels_;
+	nombrePixelEnHauteur_ *= 2;
 }
 
 bool Image::ajouterPixel(Pixel & pixel,unsigned int positionLargeur, unsigned int positionHauteur){
