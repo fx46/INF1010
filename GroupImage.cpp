@@ -12,6 +12,7 @@ GroupImage::GroupImage() {
 }
 
 GroupImage::~GroupImage() {
+	delete[] images_;
 }
 
 GroupImage::GroupImage(const string &type, unsigned int capaciteImages) {
