@@ -30,6 +30,7 @@ Image::~Image()
 		delete pixels_[i];
 	}
 	delete[] pixels_;
+	pixels_ = nullptr;
 	*/
 }
 
