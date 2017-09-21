@@ -52,13 +52,9 @@ void GroupImage::afficherImages() const {
 }
 
 void GroupImage::doublerTailleImageEnLargeur(unsigned int indiceImage) {
-	Image nouvelleImage = obtenirImage(indiceImage);
-	nouvelleImage.doublerTailleEnLargeur();
-	images_[indiceImage] = nouvelleImage;
+	images_[indiceImage].doublerTailleEnLargeur();
 }
 
 void GroupImage::doublerTailleImageEnHauteur(unsigned int indiceImage) {
-	Image nouvelleImage = obtenirImage(indiceImage);
-	nouvelleImage.doublerTailleEnHauteur();
-	images_[indiceImage] = nouvelleImage;
+	images_[indiceImage].doublerTailleEnHauteur();
 }

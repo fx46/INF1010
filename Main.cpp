@@ -72,7 +72,7 @@ int main()
 	groupeImage.doublerTailleImageEnHauteur(1);
 
 	//15- Afficher cette image 
-	groupeImage.obtenirImage(0).afficherImage();
+	groupeImage.obtenirImage(1).afficherImage();
 
 	system("pause");
 	return 0;
