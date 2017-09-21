@@ -17,14 +17,20 @@ Image::Image(const string& nomImage,unsigned int nombrePixelHauteur, unsigned in
 	nomImage_ = nomImage;
 	nombrePixelEnHauteur_ = nombrePixelHauteur;
 	nombrePixelEnLargeur_ = nombrePixelLargeur;
-	pixels_ = new Pixel*[nombrePixelLargeur];
-	for (unsigned int i = 0; i < nombrePixelLargeur; i++) {
-		pixels_[i] = new Pixel[nombrePixelHauteur];
+	pixels_ = new Pixel*[nombrePixelEnHauteur_];
+	for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
+		pixels_[i] = new Pixel[nombrePixelEnLargeur_];
 	}
 }
 
 Image::~Image()
 {
+	/*
+	for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
+		delete pixels_[i];
+	}
+	delete[] pixels_;
+	*/
 }
 
 string Image::obtenirNomImage() const{
@@ -44,17 +50,33 @@ void Image::modifierNomImage(const string & nomImage){
 }
 
 void Image::doublerTailleEnLargeur(){
-	Image nouvelleImage = Image("temp", obtenirNombrePixelHauteur(), 2 * obtenirNombrePixelLargeur());
-	nouvelleImage.pixels_ = pixels_;
-	pixels_ = nouvelleImage.pixels_;
+	Pixel** pixelsTemp = new Pixel*[nombrePixelEnHauteur_];
+	for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
+		pixelsTemp[i] = new Pixel[2 * nombrePixelEnLargeur_];
+	}
+	for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
+		for (unsigned int j = 0; j < nombrePixelEnLargeur_; j++) {
+			pixelsTemp[i][j] = pixels_[i][j];
+		}
+	}
+	//delete pixels_;
 	nombrePixelEnLargeur_ *= 2;
+	pixels_ = pixelsTemp;
 }
 
 void Image::doublerTailleEnHauteur(){
-	Image nouvelleImage = Image("temps", 2 * obtenirNombrePixelHauteur(), obtenirNombrePixelLargeur());
-	nouvelleImage.pixels_ = pixels_;
-	pixels_ = nouvelleImage.pixels_;
+	Pixel** pixelsTemp = new Pixel*[2 * nombrePixelEnHauteur_];
+	for (unsigned int i = 0; i < 2 * nombrePixelEnHauteur_; i++) {
+		pixelsTemp[i] = new Pixel[nombrePixelEnLargeur_];
+	}
+	for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
+		for (unsigned int j = 0; j < nombrePixelEnLargeur_; j++) {
+			pixelsTemp[i][j] = pixels_[i][j];
+		}
+	}
+	//delete pixels_;
 	nombrePixelEnHauteur_ *= 2;
+	pixels_ = pixelsTemp;
 }
 
 bool Image::ajouterPixel(Pixel & pixel,unsigned int positionLargeur, unsigned int positionHauteur){
@@ -62,25 +84,25 @@ bool Image::ajouterPixel(Pixel & pixel,unsigned int positionLargeur, unsigned in
 		positionHauteur >= 0 && 
 		positionLargeur < obtenirNombrePixelLargeur() &&
 		positionHauteur < obtenirNombrePixelHauteur()) {
-			pixels_[positionLargeur][positionHauteur] = pixel;
+			pixels_[positionHauteur][positionLargeur] = pixel;
 			return true;
 	}
 	return false;
 }
 
 Pixel Image::obtenirPixel(unsigned int positionHauteur, unsigned int positionLargeur) const{
-	return pixels_[positionLargeur][positionHauteur];
+	return pixels_[positionHauteur][positionLargeur];
 }
 
 void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int  increment, char couleur){
 	if (couleur == 'R') {
-		pixels_[positionLargeur][positionHauteur].modifierTeinteRouge(increment);
+		pixels_[positionHauteur][positionLargeur].modifierTeinteRouge(increment);
 	}
 	else if (couleur == 'B') {
-		pixels_[positionLargeur][positionHauteur].modifierTeinteBleu(increment);
+		pixels_[positionHauteur][positionLargeur].modifierTeinteBleu(increment);
 	}
 	else {
-		pixels_[positionLargeur][positionHauteur].modifierTeinteVert(increment);
+		pixels_[positionHauteur][positionLargeur].modifierTeinteVert(increment);
 	}
 }
 
@@ -89,7 +111,7 @@ void Image::afficherImage() const {
 	for (unsigned int i = 0; i < obtenirNombrePixelHauteur(); i++) {
 		cout << "\t";
 		for (unsigned int j = 0; j < obtenirNombrePixelLargeur(); j++) {
-			pixels_[j][i].afficherPixel();
+			pixels_[i][j].afficherPixel();
 		}
 		cout << endl;
 	}
