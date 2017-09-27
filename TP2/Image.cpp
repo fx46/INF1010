@@ -130,7 +130,7 @@ void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int posi
 	}
 
 }
-Pixel & operator = (const Pixel & P) {
+Pixel & Pixel::operator = (const Pixel & P) {
 	if (this != &P)
 	{
 		~Image();  //décommenter la fonction ~ pour voir si cela fonctionne
@@ -148,6 +148,20 @@ Pixel & operator = (const Pixel & P) {
 	}
 	return *this;
 }
+
+friend ostream & operator << (ostream &, const Image &) {
+	cout << "Affichage de l'image :  " << I.obtenirNomImage().c_str() << endl;
+
+	for (unsigned int i = 0; i < I.nombrePixelEnHauteur_; i++) {
+		cout << "    ";
+		for (unsigned int j = 0; j < I.nombrePixelEnLargeur_; j++) {
+			if(I.pixels_[i][j] != nullptr)
+				I.pixels_[i][j].retournerCouleur();  //ou utiliser l'opérateur << de Pixel??
+		}
+		cout << endl;
+	}
+}
+
 bool Image::operator == (const Image & I)
 {
 	if (nomImage_ == I.nomImage_) {
