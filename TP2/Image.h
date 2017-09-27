@@ -27,13 +27,16 @@ public:
 	void modifierNomImage(const string & nomImage);
 
 	// Methode à ignorer pour le TP2
-	void afficherImage() const;
+	//void afficherImage() const;
 
 	bool ajouterPixel(Pixel & pixel,unsigned int positionLargeur, unsigned int positionHauteur);
 	Pixel obtenirPixel(unsigned int positionHauteur, unsigned int positionLargeur) const ;
 	void augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int  increment, char couleur);
 
     // Ajouter les opérateurs
+	Pixel & operator = (const Pixel & P);
+	bool operator == (const Image & I);
+
 private :
 	string nomImage_;
 	unsigned int nombrePixelEnHauteur_;

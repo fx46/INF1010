@@ -20,11 +20,15 @@ public:
 	unsigned int obtenirTauxVert() const;
 	unsigned int obtenirTauxBleu() const;
 		
-	
-     //  Remplacer cette méthode par char retournerCouleur() const;
-	void afficherPixel() const;
-	
+	//  Remplacer cette méthode par char retournerCouleur() const;
+	char retournerCouleur() const;
+
 	// Ajouter les opérateurs
+	
+	friend ostream & operator << (ostream &, const Pixel &);
+	bool operator == (const Pixel & P);
+	bool operator == (const char & C);
+	friend bool operator == (const Pixel & P);
 
 private:
 	unsigned int tauxRouge_ ;

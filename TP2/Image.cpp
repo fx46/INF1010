@@ -63,9 +63,6 @@ bool Image::ajouterPixel(Pixel & pixel, unsigned int positionLargeur, unsigned i
 	}
 }
 
-
-
-
 void Image::doublerTailleEnHauteur(){
 	nombrePixelEnHauteur_ *= 2;
 
@@ -84,7 +81,6 @@ void Image::doublerTailleEnHauteur(){
 
 }
 
-
 void Image::doublerTailleEnLargeur() {
 	nombrePixelEnLargeur_ *= 2;
 
@@ -100,8 +96,7 @@ void Image::doublerTailleEnLargeur() {
 
 	
 }
-
-
+/*
 void Image::afficherImage() const {
 
 	cout << "Affichage de l'image :  " << obtenirNomImage().c_str()<< endl;
@@ -114,6 +109,7 @@ void Image::afficherImage() const {
 		cout << endl;
 	}
 }
+*/
 
 Pixel Image::obtenirPixel(unsigned int positionLargeur,unsigned int positionHauteur) const {
  
@@ -133,4 +129,38 @@ void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int posi
 		pixels_[positionHauteur][positionLargeur].modifierTeinteBleu(increment);
 	}
 
+}
+Pixel & operator = (const Pixel & P) {
+	if (this != &P)
+	{
+		~Image();  //décommenter la fonction ~ pour voir si cela fonctionne
+		nomImage_ = P.nomImage_;
+		nombrePixelEnHauteur_ = P.nombrePixelEnHauteur_;
+		nombrePixelEnLargeur_ = P.nombrePixelEnLargeur_;
+
+		pixels_ = new Pixel*[nombrePixelEnHauteur_];
+		for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
+			pixels_[i] = new Pixel[nombrePixelEnLargeur_];
+			for (unsigned int j = 0; j < nombrePixelEnLargeur_; j++) {
+				pixels_[i][j] = P.pixels_[i][j];
+			}
+		}
+	}
+	return *this;
+}
+bool Image::operator == (const Image & I)
+{
+	if (nomImage_ == I.nomImage_) {
+		for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
+			for (unsigned int j = 0; j < nombrePixelEnLargeur_; j++) {
+				if (pixels_[i][j] != I.pixels_[i][j])
+					return false;
+					break;                             //???
+			}
+		}
+		return true;
+		break;                                         //???
+	}
+	else
+		return false;
 }

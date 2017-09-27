@@ -90,30 +90,88 @@ void Pixel::modifierTeinteBleu( int incrementBleu) {
 	}
 }
 
-
-
-
-void Pixel::afficherPixel() const
-{
-	if (tauxVert_ == 0 && tauxBleu_ == 0 &&  tauxRouge_!=0) {
-		cout << 'R';
+char Pixel::retournerCouleur() const{
+	if (tauxVert_ == 0 && tauxBleu_ == 0 && tauxRouge_ != 0) {
+		return 'R';
 
 	}
 	else if (tauxRouge_ == 0 && tauxBleu_ == 0 && tauxVert_ != 0) {
-		cout << 'G';
+		return 'G';
 
 	}
 	else if (tauxRouge_ == 0 && tauxVert_ == 0 && tauxBleu_ != 0) {
-		cout << 'B';
+		return 'B';
 
 	}
 	// Optionnel, si on veut distinguer colore et completement noir
 	/*
 	else if (tauxRouge_ == 0 && tauxVert_ == 0 && tauxBleu_ == 0){
-		cout <<'O';
+	cout <<'O';
+	}
+	*/
+	else {
+		return << 'Q';
+	}
+
+// affiche la couleur du pixel
+// en appelant << pour un objet de classe Pixel
+ostream & Pixel::operator << (ostream & sortie, const Pixel & P){
+	if (P.tauxVert_ == 0 && P.tauxBleu_ == 0 && P.tauxRouge_ != 0) {
+		cout << 'R';
+
+	}
+	else if (P.tauxRouge_ == 0 && P.tauxBleu_ == 0 && P.tauxVert_ != 0) {
+		cout << 'G';
+
+	}
+	else if (P.tauxRouge_ == 0 && P.tauxVert_ == 0 && P.tauxBleu_ != 0) {
+		cout << 'B';
+
+	}
+	/*
+	// Optionnel, si on veut distinguer colore et completement noir
+
+	else if (P.tauxRouge_ == 0 && P.tauxVert_ == 0 && P.tauxBleu_ == 0){
+	cout <<'O';
 	}
 	*/
 	else {
 		cout << 'Q';
 	}
+
+//compare deux Pixels
+bool Pixel::operator == (const Pixel & P){
+	if (tauxRouge_ == P.tauxRouge_ && tauxVert_ == P.tauxVert && tauxBleu_ == P.tauxBleu)
+		return true;
+	else
+		return false;
+}
+
+//compare Pixel à une couleur passée en paramètre char
+bool Pixel::operator == (const char & C) {
+	if (C == 'R') {
+		if ((tauxVert_ == 0 && tauxBleu_ == 0 && tauxRouge_ != 0)
+			return true;
+		else
+			return false;
+	}
+	
+	else if (C == 'G') {
+		if ((tauxRouge_ == 0 && tauxBleu_ == 0 && tauxVert_ != 0)
+			return true;
+		else
+			return false;
+	}
+
+	else if (C == 'B') {
+		if ((tauxVert_ == 0 && tauxRouge_ == 0 && tauxBleu_ != 0)
+			return true;
+		else
+			return false;
+	}
+}
+
+//inverse operateur précédent; compare couleur char à un Pixel passé en paramètre
+bool Pixel::operator == (const Pixel & P) {
+
 }
