@@ -24,8 +24,7 @@ public:
 	char retournerCouleur() const;
 
 	// Ajouter les opérateurs
-	
-	friend ostream & operator << (ostream & sortie, const Pixel & P);
+	friend ostream& operator<<(ostream& sortie, const Pixel& P);
 	bool operator == (const Pixel & P);
 	bool operator == (const char C);
 	friend bool operator == (const char C, const Pixel & P);

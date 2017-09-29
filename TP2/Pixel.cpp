@@ -90,7 +90,7 @@ void Pixel::modifierTeinteBleu( int incrementBleu) {
 	}
 }
 
-char Pixel::retournerCouleur() const{
+char Pixel::retournerCouleur() const {
 	if (tauxVert_ == 0 && tauxBleu_ == 0 && tauxRouge_ != 0) {
 		return 'R';
 
@@ -110,19 +110,20 @@ char Pixel::retournerCouleur() const{
 	}
 	*/
 	else {
-		return << 'Q';
+		return 'Q';
 	}
+}
 
 // affiche la couleur du pixel
 // en appelant << pour un objet de classe Pixel
-ostream & operator << (ostream & sortie, const Pixel & P){
-	sortie << pixel.retournerCouleur();
+ostream& operator<<(ostream& sortie, const Pixel& P){
+	sortie << P.retournerCouleur();
 	return sortie;
 }
 
 //compare deux Pixels
 bool Pixel::operator == (const Pixel & P){
-	if (this->tauxRouge_ == P.tauxRouge_ && this->tauxVert_ == P.tauxVert && this->tauxBleu_ == P.tauxBleu)
+	if (this->tauxRouge_ == P.tauxRouge_ && this->tauxVert_ == P.tauxVert_ && this->tauxBleu_ == P.tauxBleu_)
 		return true;
 	else
 		return false;

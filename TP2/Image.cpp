@@ -138,10 +138,10 @@ Image::Image(const Image &I) {
 	nombrePixelEnLargeur_ = I.nombrePixelEnLargeur_;
 }
 
-Image & Image::operator = (const Image & P) {
+Image & Image::operator = (const Image & I) {
 	if (this != &I)
 	{
-		~Image();  //décommenter la fonction ~ pour voir si cela fonctionne
+		this->~Image();
 		this->nomImage_ = I.nomImage_;
 		this->nombrePixelEnHauteur_ = I.nombrePixelEnHauteur_;
 		this->nombrePixelEnLargeur_ = I.nombrePixelEnLargeur_;
@@ -157,14 +157,15 @@ Image & Image::operator = (const Image & P) {
 	return *this;
 }
 
-friend ostream & operator << (ostream & sortie, const Image & I) {
+ostream & operator << (ostream & sortie, const Image & I) {
 	sortie << "Affichage de l'image :  " << I.obtenirNomImage().c_str() << endl;
 
 	for (unsigned int i = 0; i < I.nombrePixelEnHauteur_; i++) {
 		sortie << "    ";
 		for (unsigned int j = 0; j < I.nombrePixelEnLargeur_; j++) {
-			if(I.pixels_[i][j] != nullptr)
-				I.pixels_[i][j].retournerCouleur();  //ou utiliser l'opérateur << de Pixel??
+			if (&(I.pixels_[i][j]) != nullptr) {
+				sortie << I.pixels_[i][j];
+			}
 		}
 		sortie << endl;
 	}
@@ -177,7 +178,7 @@ bool Image::operator == (const Image & I){
 	if (this->nomImage_ == I.nomImage_) {
 		for (unsigned int i = 0; i < this->nombrePixelEnHauteur_; i++) {
 			for (unsigned int j = 0; j < this->nombrePixelEnLargeur_; j++) {
-				if (this->pixels_[i][j] != I.pixels_[i][j])
+				if (!(this->pixels_[i][j] == I.pixels_[i][j]))
 					trigger = false;
 			}
 		}
@@ -185,7 +186,7 @@ bool Image::operator == (const Image & I){
 	}
 	else
 		trigger = false;
-		return trigger
+	return trigger;
 }
 
 bool Image::operator == (const string & name) {
