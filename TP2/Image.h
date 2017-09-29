@@ -34,9 +34,11 @@ public:
 	void augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int  increment, char couleur);
 
     // Ajouter les opérateurs
-	friend ostream & operator << (ostream &, const Image &);
-	Pixel & operator = (const Pixel & P);
+	friend ostream & operator << (ostream & sortie, const Image & I);
+	Image & operator = (const Image & I);
 	bool operator == (const Image & I);
+	bool operator == (const string & name);
+	friend bool operator == (const string & name, const Image & I);
 
 private :
 	string nomImage_;

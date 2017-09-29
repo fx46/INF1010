@@ -2,6 +2,7 @@
 #include "Image.h"
 #include <iostream>
 #include "Const.h"
+#include <string>
 
 using namespace std;
 
@@ -130,51 +131,67 @@ void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int posi
 	}
 
 }
-Pixel & Pixel::operator = (const Pixel & P) {
-	if (this != &P)
+//constructeur par copie nécessaire?
+Image::Image(const Image &I) {
+	nomImage_ = I.nomImage_;
+	nombrePixelEnHauteur_ = I.nombrePixelEnHauteur_;
+	nombrePixelEnLargeur_ = I.nombrePixelEnLargeur_;
+}
+
+Image & Image::operator = (const Image & P) {
+	if (this != &I)
 	{
 		~Image();  //décommenter la fonction ~ pour voir si cela fonctionne
-		nomImage_ = P.nomImage_;
-		nombrePixelEnHauteur_ = P.nombrePixelEnHauteur_;
-		nombrePixelEnLargeur_ = P.nombrePixelEnLargeur_;
+		this->nomImage_ = I.nomImage_;
+		this->nombrePixelEnHauteur_ = I.nombrePixelEnHauteur_;
+		this->nombrePixelEnLargeur_ = I.nombrePixelEnLargeur_;
 
 		pixels_ = new Pixel*[nombrePixelEnHauteur_];
 		for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
-			pixels_[i] = new Pixel[nombrePixelEnLargeur_];
+			this->pixels_[i] = new Pixel[nombrePixelEnLargeur_];
 			for (unsigned int j = 0; j < nombrePixelEnLargeur_; j++) {
-				pixels_[i][j] = P.pixels_[i][j];
+				this->pixels_[i][j] = I.pixels_[i][j];
 			}
 		}
 	}
 	return *this;
 }
 
-friend ostream & operator << (ostream &, const Image &) {
-	cout << "Affichage de l'image :  " << I.obtenirNomImage().c_str() << endl;
+friend ostream & operator << (ostream & sortie, const Image & I) {
+	sortie << "Affichage de l'image :  " << I.obtenirNomImage().c_str() << endl;
 
 	for (unsigned int i = 0; i < I.nombrePixelEnHauteur_; i++) {
-		cout << "    ";
+		sortie << "    ";
 		for (unsigned int j = 0; j < I.nombrePixelEnLargeur_; j++) {
 			if(I.pixels_[i][j] != nullptr)
 				I.pixels_[i][j].retournerCouleur();  //ou utiliser l'opérateur << de Pixel??
 		}
-		cout << endl;
+		sortie << endl;
 	}
+
+	return sortie;
 }
 
-bool Image::operator == (const Image & I)
-{
-	if (nomImage_ == I.nomImage_) {
-		for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
-			for (unsigned int j = 0; j < nombrePixelEnLargeur_; j++) {
-				if (pixels_[i][j] != I.pixels_[i][j])
-					return false;
-					break;                             //???
+bool Image::operator == (const Image & I){
+	bool trigger = true;
+	if (this->nomImage_ == I.nomImage_) {
+		for (unsigned int i = 0; i < this->nombrePixelEnHauteur_; i++) {
+			for (unsigned int j = 0; j < this->nombrePixelEnLargeur_; j++) {
+				if (this->pixels_[i][j] != I.pixels_[i][j])
+					trigger = false;
 			}
 		}
-		return true;
-		break;                                         //???
+		return trigger;
 	}
 	else
-		return false;
+		trigger = false;
+		return trigger
+}
+
+bool Image::operator == (const string & name) {
+	return this->nomImage_ == name;
+}
+
+bool operator == (const string & name, const Image & I) {
+	return name == I.nomImage_;
 }

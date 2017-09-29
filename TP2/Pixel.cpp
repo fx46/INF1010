@@ -115,63 +115,31 @@ char Pixel::retournerCouleur() const{
 
 // affiche la couleur du pixel
 // en appelant << pour un objet de classe Pixel
-ostream & Pixel::operator << (ostream & sortie, const Pixel & P){
-	if (P.tauxVert_ == 0 && P.tauxBleu_ == 0 && P.tauxRouge_ != 0) {
-		cout << 'R';
-
-	}
-	else if (P.tauxRouge_ == 0 && P.tauxBleu_ == 0 && P.tauxVert_ != 0) {
-		cout << 'G';
-
-	}
-	else if (P.tauxRouge_ == 0 && P.tauxVert_ == 0 && P.tauxBleu_ != 0) {
-		cout << 'B';
-
-	}
-	/*
-	// Optionnel, si on veut distinguer colore et completement noir
-
-	else if (P.tauxRouge_ == 0 && P.tauxVert_ == 0 && P.tauxBleu_ == 0){
-	cout <<'O';
-	}
-	*/
-	else {
-		cout << 'Q';
-	}
+ostream & operator << (ostream & sortie, const Pixel & P){
+	sortie << pixel.retournerCouleur();
+	return sortie;
+}
 
 //compare deux Pixels
 bool Pixel::operator == (const Pixel & P){
-	if (tauxRouge_ == P.tauxRouge_ && tauxVert_ == P.tauxVert && tauxBleu_ == P.tauxBleu)
+	if (this->tauxRouge_ == P.tauxRouge_ && this->tauxVert_ == P.tauxVert && this->tauxBleu_ == P.tauxBleu)
 		return true;
 	else
 		return false;
 }
 
 //compare Pixel à une couleur passée en paramètre char
-bool Pixel::operator == (const char & C) {
-	if (C == 'R') {
-		if ((tauxVert_ == 0 && tauxBleu_ == 0 && tauxRouge_ != 0)
-			return true;
-		else
-			return false;
-	}
-	
-	else if (C == 'G') {
-		if ((tauxRouge_ == 0 && tauxBleu_ == 0 && tauxVert_ != 0)
-			return true;
-		else
-			return false;
-	}
-
-	else if (C == 'B') {
-		if ((tauxVert_ == 0 && tauxRouge_ == 0 && tauxBleu_ != 0)
-			return true;
-		else
-			return false;
-	}
+bool Pixel::operator == (const char C) {
+	if (this->retournerCouleur() == C)  // ou juste return this->retournerCouleur() == C??
+		return true;
+	else
+		return false;
 }
 
 //inverse operateur précédent; compare couleur char à un Pixel passé en paramètre
-bool Pixel::operator == (const Pixel & P) {
-
+bool operator == (const char C, const Pixel & P) {
+	if (C == P.retournerCouleur())
+		return true;
+	else
+		return false;
 }

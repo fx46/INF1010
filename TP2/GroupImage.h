@@ -1,6 +1,7 @@
 #ifndef GROUPIMAGE_H
 #define GROUPIMAGE_H
 #include "Image.h"
+#include <vector>
 
 using namespace std;
 
@@ -13,25 +14,26 @@ public:
 
 	
     // Constructeur à supprimer pour TP2
-	GroupImage( const string &type, unsigned int capaciteImages);
+	//GroupImage( const string &type, unsigned int capaciteImages);
 
 	void modifierType(const string &type);
 	string obtenirType() const;
 
 	// Modifier cette méthode par Image* obtenirImage(unsigned int indiceImage) const;
-	Image obtenirImage(unsigned int indiceImage) const;
+	Image* obtenirImage(unsigned int indiceImage) const;
 
 	
     // Méthode à supprimer pour TP2
-	unsigned int obtenirNombreImages() const;
+	//unsigned int obtenirNombreImages() const;
 
 	// Méthode à modifier avec void ajouterImage(Image* &image);
-	void ajouterImage(const Image &image);
+	void ajouterImage(const Image* &image);
+
 	//  ajouter la methode pour retirer une image en donnant
 	//son nom en paramètre
-
+	void retirerImage(const string & name);
 	// Méthode à modifier avec void afficherImages(ostream& os)
-	void afficherImages() const;  
+	void afficherImages(ostream& sortie) const;  
 	
 
 	void doublerTailleImageEnLargeur(unsigned int indiceImage);
@@ -48,7 +50,7 @@ private:
 	// Attributs à mdifier 
 	unsigned int nombreImages_;
 	unsigned int capaciteImages_;
-	Image* images_;
+	vector <Image*> images_;
 
 };
 
