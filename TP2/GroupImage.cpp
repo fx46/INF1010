@@ -5,21 +5,24 @@
 using namespace std;
 
 GroupImage::GroupImage():nombreImages_(1),capaciteImages_(1) {
-	images_ = new Image[1];
+	images_.push_back(new Image[1]);
 }
 
 GroupImage::~GroupImage() {
-	delete[] images_;
+	for (int i = 0; i < images_.size(); i++) {
+		delete images_[i];
+	}
 	capaciteImages_ = 0;
 	nombreImages_ = 0;
 
 }
 
-GroupImage::GroupImage(const string & type,unsigned int capaciteImages): type_(type), capaciteImages_(capaciteImages) {
+/*GroupImage::GroupImage(const string & type,unsigned int capaciteImages): type_(type), capaciteImages_(capaciteImages) {
 
 	images_ = new Image[capaciteImages_];
 	nombreImages_ = 0;
 }
+*/
 
 void GroupImage::modifierType(const string & type) {
 	type_ = type;
@@ -29,17 +32,20 @@ string GroupImage::obtenirType() const{
 	return type_;
 }
 
-unsigned int GroupImage::obtenirNombreImages() const {
+/*unsigned int GroupImage::obtenirNombreImages() const {
 	return nombreImages_;
-}
+}*/
 
-void GroupImage::ajouterImage(const Image& image) {
+void GroupImage::ajouterImage(const Image*& image) {
 	if (nombreImages_ < capaciteImages_) {
 		images_[nombreImages_++] = image;
 	}
 }
 
-void GroupImage::afficherImages() const {
+void GroupImage::retirerImage(const string & name) {
+
+}
+void GroupImage::afficherImages(ostream& os) const {
 
 	cout << "*********************************************" << endl;
 	cout << "Affichage des images du groupe :  ";
@@ -48,14 +54,14 @@ void GroupImage::afficherImages() const {
 	
 	for (unsigned int i = 0; i < nombreImages_; i++) {
 
-		images_[i].afficherImage();
+		images_[i].<<
 		cout << "---------------------------------------------" << endl;
 
 	}
 	cout << endl;
 }
 
-Image GroupImage::obtenirImage(unsigned int indiceImage) const {
+Image* GroupImage::obtenirImage(unsigned int indiceImage) const {
 	return images_[indiceImage];
 }
 
