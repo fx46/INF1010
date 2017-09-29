@@ -43,7 +43,7 @@ void GroupImage::ajouterImage(const Image*& image) {
 }
 
 void GroupImage::retirerImage(const string & name) {
-
+	
 }
 void GroupImage::afficherImages(ostream& os) const {
 
@@ -73,3 +73,10 @@ void GroupImage::doublerTailleImageEnHauteur(unsigned int indiceImage) {
 	images_[indiceImage].doublerTailleEnHauteur();
 }
  
+GroupImage & GroupImage::operator += (const Image & I) {
+	this->images_.push_back(I);
+	return *this;
+}
+
+GroupImage & GroupImage::operator -= (const Image & I) {
+}

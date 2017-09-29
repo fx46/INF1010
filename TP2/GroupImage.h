@@ -42,6 +42,8 @@ public:
 	
      
     // Ajouter les opérateurs 
+	GroupImage & operator += (const Image & I);
+	GroupImage & operator -= (const Image & I);
 
 private:
 
