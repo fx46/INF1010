@@ -119,7 +119,8 @@ Pixel Image::obtenirPixel(unsigned int positionLargeur,unsigned int positionHaut
 }
 
 void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int  increment, char couleur) {
-
+	//cout << "this->obtenirNomImage: " << this->obtenirNomImage() << endl;
+	//cout << "lul" << endl;
 	if (couleur == 'R') {
 		pixels_[positionHauteur][positionLargeur].modifierTeinteRouge(increment);
 	}

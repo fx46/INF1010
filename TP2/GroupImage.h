@@ -10,6 +10,7 @@ class GroupImage
 {
 public:
 	GroupImage(); // A modifier l'implementation
+	GroupImage(int capacite);
 	~GroupImage(); // A modifier l'implementation
 
 	
@@ -27,7 +28,7 @@ public:
 	//unsigned int obtenirNombreImages() const;
 
 	// Méthode à modifier avec void ajouterImage(Image* &image);
-	void ajouterImage(const Image* &image);
+	void ajouterImage(const Image &image);
 
 	//  ajouter la methode pour retirer une image en donnant
 	//son nom en paramètre
@@ -44,6 +45,7 @@ public:
     // Ajouter les opérateurs 
 	GroupImage & operator += (const Image & I);
 	GroupImage & operator -= (const Image & I);
+	friend ostream& operator<<(ostream& sortie, const GroupImage& G);
 
 private:
 
@@ -51,7 +53,6 @@ private:
 
 	// Attributs à mdifier 
 	unsigned int nombreImages_;
-	unsigned int capaciteImages_;
 	vector <Image*> images_;
 
 };

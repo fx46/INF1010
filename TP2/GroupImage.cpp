@@ -4,15 +4,17 @@
 
 using namespace std;
 
-GroupImage::GroupImage():nombreImages_(1),capaciteImages_(1) {
-	images_.push_back(new Image[1]);
+GroupImage::GroupImage():nombreImages_(0) {
+}
+
+GroupImage::GroupImage(int capacite) : nombreImages_(0) {
+	images_ = vector<Image*>(capacite);
 }
 
 GroupImage::~GroupImage() {
 	for (unsigned int i = 0; i < images_.size(); i++) {
 		delete images_[i];
 	}
-	capaciteImages_ = 0;
 	nombreImages_ = 0;
 }
 
@@ -35,8 +37,8 @@ string GroupImage::obtenirType() const{
 	return nombreImages_;
 }*/
 
-void GroupImage::ajouterImage(const Image*& image) {
-	images_.push_back(new Image(*image));
+void GroupImage::ajouterImage(const Image& image) {
+	images_.push_back(new Image(image));
 	nombreImages_++;
 }
 
@@ -53,15 +55,15 @@ void GroupImage::retirerImage(const string & name) {
 }
 void GroupImage::afficherImages(ostream& os) const {
 
-	cout << "*********************************************" << endl;
-	cout << "Affichage des images du groupe :  ";
-	cout << obtenirType().c_str() << endl;
-	cout << "*********************************************"<< endl;
+	os << "*********************************************" << endl;
+	os << "Affichage des images du groupe :  ";
+	os << obtenirType().c_str() << endl;
+	os << "*********************************************"<< endl;
 	
 	for (unsigned int i = 0; i < nombreImages_; i++) {
 
-		cout << images_[i];
-		cout << "---------------------------------------------" << endl;
+		os << images_[i];
+		os << "---------------------------------------------" << endl;
 
 	}
 	cout << endl;
@@ -80,12 +82,16 @@ void GroupImage::doublerTailleImageEnHauteur(unsigned int indiceImage) {
 }
  
 GroupImage & GroupImage::operator += (const Image & I) {
-	const Image* ptrI = &I;
-	this->ajouterImage(ptrI);
+	ajouterImage(I);
 	return *this;
 }
 
 GroupImage & GroupImage::operator -= (const Image & I) {
-	this->retirerImage(I.obtenirNomImage());
+	retirerImage(I.obtenirNomImage());
 	return *this;
+}
+
+ostream& operator<<(ostream& sortie, const GroupImage& G) {
+	G.afficherImages(sortie);
+	return sortie;
 }
