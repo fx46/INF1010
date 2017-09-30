@@ -1,4 +1,3 @@
-
 #include "Pixel.h"
 #include <iostream>
 #include "Const.h"
@@ -32,7 +31,7 @@ unsigned int Pixel::obtenirTauxBleu() const {
 
 void Pixel::modifierTeinteRouge(int incrementRouge) {
 	if (incrementRouge < 0) {
-		if (abs(incrementRouge) >= tauxRouge_) {
+		if ((unsigned int)(incrementRouge) >= tauxRouge_) {
 		    tauxRouge_ = MIN_CONCENTRATION_COULEUR;
 		}
 		else {
@@ -52,7 +51,7 @@ void Pixel::modifierTeinteRouge(int incrementRouge) {
 
 void Pixel::modifierTeinteVert( int incrementVert) {
 	if (incrementVert < 0) {
-		if (abs(incrementVert) >= tauxVert_) {
+		if ((unsigned int)(incrementVert) >= tauxVert_) {
 		    tauxVert_ = MIN_CONCENTRATION_COULEUR;
 		}
 		else {
@@ -72,7 +71,7 @@ void Pixel::modifierTeinteVert( int incrementVert) {
 
 void Pixel::modifierTeinteBleu( int incrementBleu) {
 	if (incrementBleu < 0) {
-		if (abs(incrementBleu) >= tauxBleu_) {
+		if ((unsigned int)(incrementBleu) >= tauxBleu_) {
 		    tauxBleu_ = MIN_CONCENTRATION_COULEUR;
 		}
 		else {

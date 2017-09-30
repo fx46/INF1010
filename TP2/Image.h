@@ -13,6 +13,7 @@ public:
 	~Image();
 
 	Image(const string& nomImage,unsigned int nombrePixelHauteur, unsigned int nombrePixelLargeur);
+	Image(const Image &I);
 
 	// SI c'est nécessaire ajouter un constructeur par copie
 
@@ -34,7 +35,7 @@ public:
 	void augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int  increment, char couleur);
 
     // Ajouter les opérateurs
-	friend ostream & operator << (ostream & sortie, const Image & I);
+	friend ostream& operator<<(ostream& sortie, const Image& I);
 	Image & operator = (const Image & I);
 	bool operator == (const Image & I);
 	bool operator == (const string & name);

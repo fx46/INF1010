@@ -80,9 +80,12 @@ void GroupImage::doublerTailleImageEnHauteur(unsigned int indiceImage) {
 }
  
 GroupImage & GroupImage::operator += (const Image & I) {
-	this->ajouterImage(&I);
+	const Image* ptrI = &I;
+	this->ajouterImage(ptrI);
 	return *this;
 }
 
 GroupImage & GroupImage::operator -= (const Image & I) {
+	this->retirerImage(I.obtenirNomImage());
+	return *this;
 }
