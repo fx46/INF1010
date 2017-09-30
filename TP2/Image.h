@@ -27,9 +27,6 @@ public:
 	
 	void modifierNomImage(const string & nomImage);
 
-	// Methode à ignorer pour le TP2
-	//void afficherImage() const;
-
 	bool ajouterPixel(Pixel & pixel,unsigned int positionLargeur, unsigned int positionHauteur);
 	Pixel obtenirPixel(unsigned int positionHauteur, unsigned int positionLargeur) const ;
 	void augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int  increment, char couleur);

@@ -8,7 +8,6 @@ Pixel::Pixel() : tauxRouge_(0),tauxVert_(0),tauxBleu_(0)
 {
 }
 
-
 Pixel::~Pixel()
 {
 }
@@ -17,7 +16,6 @@ Pixel::Pixel(unsigned int tauxRouge, unsigned int tauxVert, unsigned int tauxBle
 	tauxRouge_(tauxRouge), tauxVert_(tauxVert), tauxBleu_(tauxBleu)
 {
 }
-
 
 unsigned int Pixel::obtenirTauxRouge() const {
 	return tauxRouge_;

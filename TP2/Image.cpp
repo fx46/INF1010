@@ -92,35 +92,14 @@ void Image::doublerTailleEnLargeur() {
 		}
 		delete[] pixels_[i];
 		pixels_[i] = colonneImage;
-
-	}
-
-	
+	}	
 }
-/*
-void Image::afficherImage() const {
-
-	cout << "Affichage de l'image :  " << obtenirNomImage().c_str()<< endl;
-	
-	for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
-		cout << "    ";
-			for (unsigned int j = 0; j < nombrePixelEnLargeur_;j++) {
-					pixels_[i][j].afficherPixel();
-		    }
-		cout << endl;
-	}
-}
-*/
 
 Pixel Image::obtenirPixel(unsigned int positionLargeur,unsigned int positionHauteur) const {
- 
 	return pixels_[positionHauteur][positionLargeur];
-
 }
 
 void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int  increment, char couleur) {
-	//cout << "this->obtenirNomImage: " << this->obtenirNomImage() << endl;
-	//cout << "lul" << endl;
 	if (couleur == 'R') {
 		pixels_[positionHauteur][positionLargeur].modifierTeinteRouge(increment);
 	}
@@ -170,7 +149,6 @@ ostream & operator << (ostream & sortie, const Image & I) {
 		}
 		sortie << endl;
 	}
-
 	return sortie;
 }
 

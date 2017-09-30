@@ -58,31 +58,29 @@ int main()
 	}
 
 	//7- Creez un groupe d'image avec une capacite de 3
-	GroupImage groupeImage = GroupImage(3);
+	GroupImage groupeImage = GroupImage();
 	
 	//8- Ajoutez les deux images crées precédament au groupe
-	//const Image* ptrImage0 = &image0;
-	//groupeImage.ajouterImage(ptrImage0);
 	groupeImage += image0;
 	groupeImage += image1;
-
-	cout << groupeImage;
 	
 	//9- Augmentez la teinte bleu du Pixel (1,1) de l'image 0 de 50 unités
-	//groupeImage.obtenirImage(0)->augmenterTeintePixel(1, 1, 50, 'B');
+	groupeImage.obtenirImage(0)->augmenterTeintePixel(1, 1, 50, 'B');
 	 
 	//10- Diminuer la teinte rouge du Pixel (1, 1) de l'image 0 de 255 unités
-	//groupeImage.obtenirImage(0)->augmenterTeintePixel(1, 1, 255, 'R');
+	groupeImage.obtenirImage(0)->augmenterTeintePixel(1, 1, 255, 'R');
 	
 	//11- Augmentez la teinte bleu du Pixel (2, 1) de l'image 1 de 100 unités  
-	//groupeImage.obtenirImage(1)->augmenterTeintePixel(2, 1, 100, 'B');
+	groupeImage.obtenirImage(1)->augmenterTeintePixel(2, 1, 100, 'B');
 	
 	//12- Afficher le groupe d'image
-	//cout << groupeImage;
+	cout << groupeImage;
 	
 	//13- Supprimer la premiere image du groupe d'image
+	groupeImage.retirerImage(image0.obtenirNomImage());
 	
 	//14- Afficher le groupe d'image
+	cout << groupeImage;
 	
 	
 	return 0;
